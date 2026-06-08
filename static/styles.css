@@ -1,0 +1,54 @@
+:root { --green:#6dbb43; --bg:#f6f7f5; --card:#ffffff; --line:#d8d8d8; --text:#202020; }
+* { box-sizing:border-box; }
+body { margin:0; font-family:Arial, Helvetica, sans-serif; background:var(--bg); color:var(--text); }
+.topbar { display:flex; align-items:center; gap:22px; padding:18px 28px; background:#fff; border-bottom:1px solid var(--line); position:sticky; top:0; z-index:5; }
+.topbar img { width:170px; height:auto; }
+.topbar h1 { margin:0; font-size:22px; }
+.topbar p { margin:4px 0 0; color:#666; }
+.container { max-width:1280px; margin:20px auto; padding:0 18px 40px; }
+.panel { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:18px; margin-bottom:18px; box-shadow:0 1px 3px rgba(0,0,0,.04); }
+h2 { margin:0 0 14px; font-size:16px; }
+.row { display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+.grow { flex:1; }
+.grid { display:grid; gap:14px; }
+.grid.two { grid-template-columns:repeat(2, minmax(260px, 1fr)); }
+label { font-size:13px; font-weight:700; display:flex; flex-direction:column; gap:6px; }
+input, select, button { font:inherit; }
+input, select { border:1px solid var(--line); border-radius:7px; padding:9px 10px; background:#fff; min-height:38px; }
+button { border:0; border-radius:8px; background:#e6e6e6; padding:9px 14px; cursor:pointer; font-weight:700; }
+button:hover { background:#d7d7d7; }
+button.primary { background:var(--green); color:#fff; }
+.status { margin-top:10px; color:#333; font-size:14px; min-height:18px; }
+.section-header { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:12px; }
+.table-wrap { width:100%; overflow:auto; border:1px solid var(--line); border-radius:10px; background:#fff; }
+.table-wrap.tall { min-height:190px; max-height:310px; }
+.editable-table { width:100%; border-collapse:collapse; table-layout:fixed; }
+.editable-table th { background:#f1f1f1; text-align:left; padding:9px; border-bottom:1px solid var(--line); font-size:13px; }
+.editable-table td { border-bottom:1px solid #ededed; border-right:1px solid #ededed; padding:0; }
+.editable-table input { width:100%; border:0; border-radius:0; min-height:34px; padding:8px; }
+.editable-table tr.selected td, .editable-table tr.selected input { background:#e9f4ff; }
+.fields-panel { padding-bottom:22px; }
+.tabs { display:flex; gap:8px; overflow:auto; margin-bottom:12px; padding-bottom:4px; }
+.tab { white-space:nowrap; padding:9px 13px; border-radius:999px; background:#ececec; cursor:pointer; font-weight:700; font-size:13px; }
+.tab.active { background:var(--green); color:#fff; }
+.section-tools { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:12px; }
+.section-editor { min-height:280px; max-height:460px; }
+.logo-row { margin-top:14px; }
+.actions-panel select { min-width:360px; flex:1; }
+@media (max-width: 760px) { .grid.two { grid-template-columns:1fr; } .topbar { align-items:flex-start; flex-direction:column; } .actions-panel select { min-width:100%; } }
+
+.fixed-branding-note { margin:12px 0 0; color:#5c5c5c; font-size:13px; }
+
+/* 6-dot movement controls for Product Fields and Section Tables */
+.handle-head { width:92px; text-align:center !important; }
+.handle-cell { width:92px; min-width:92px; text-align:center; vertical-align:middle; padding:4px !important; background:#fafafa; }
+.six-dot-handle { border:1px solid #d4d4d4; background:#fff; color:#666; border-radius:7px; padding:4px 7px; line-height:1; font-size:14px; cursor:pointer; min-width:30px; }
+.six-dot-handle:hover { color:var(--green); border-color:var(--green); background:#f3faef; }
+.move-mini-actions { display:inline-flex; gap:3px; margin-left:4px; vertical-align:middle; }
+.mini-move-btn { border:1px solid #cfcfcf; background:#fff; color:#333; padding:2px 5px; min-width:22px; border-radius:5px; font-size:12px; line-height:1.2; cursor:pointer; }
+.mini-move-btn:hover { border-color:var(--green); background:#eef7e8; }
+.column-head-wrap { display:flex; align-items:center; gap:7px; flex-wrap:wrap; }
+.column-handle { flex:0 0 auto; }
+.editable-table th.selected-column, .editable-table td.selected-column, .editable-table td.selected-column input { background:#f4faef; }
+.editable-table tr.selected td, .editable-table tr.selected input { background:#e9f4ff; }
+.editable-table tr.selected .handle-cell { background:#dff0ff; }
