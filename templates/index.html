@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Medikonda PDF Generator</title>
-   <link rel="stylesheet" href="/static/styles.css?v=6dot-20260608" />
+  <link rel="stylesheet" href="/static/styles.css?v=product-spec-no-results-v1" />
 </head>
 <body>
   <header class="topbar">
@@ -19,7 +19,9 @@
     <section class="panel actions-panel">
       <div class="row">
         <label>Saved Records</label>
-        <select id="recordSelect"><option value="">Select saved record...</option></select>
+        <select id="recordSelect">
+          <option value="">Select saved record...</option>
+        </select>
         <button id="newBtn">New</button>
         <button id="saveBtn">Save</button>
         <button id="generateBtn" class="primary">Generate PDF</button>
@@ -30,16 +32,27 @@
     <section class="panel">
       <h2>Document Setup</h2>
       <div class="grid two">
-        <label>Template Preset<select id="templatePreset"></select></label>
-        <label>Document Title
+        <label>
+          Template Preset
+          <select id="templatePreset"></select>
+        </label>
+
+        <label>
+          Document Title
           <select id="documentTitle">
             <option value="CERTIFICATE OF ANALYSIS">CERTIFICATE OF ANALYSIS</option>
             <option value="PRODUCT SPECIFICATION SHEET">PRODUCT SPECIFICATION SHEET</option>
           </select>
         </label>
-        <label>Website<input id="website" /></label>
+
+        <label>
+          Website
+          <input id="website" />
+        </label>
       </div>
-      <p class="fixed-branding-note">Logo and boundary color are fixed to Medikonda branding for consistent PDF output.</p>
+      <p class="fixed-branding-note">
+        Logo and boundary color are fixed to Medikonda branding for consistent PDF output.
+      </p>
     </section>
 
     <section class="panel fields-panel">
@@ -50,8 +63,18 @@
           <button id="removeFieldBtn">Remove Selected</button>
         </div>
       </div>
+
       <div class="table-wrap tall">
-        <table id="fieldsTable" class="editable-table"><thead><tr><th class="handle-head">Move</th><th>Field Name</th><th>Field Value</th></tr></thead><tbody></tbody></table>
+        <table id="fieldsTable" class="editable-table">
+          <thead>
+            <tr>
+              <th class="handle-head">Move</th>
+              <th>Field Name</th>
+              <th>Field Value</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
       </div>
     </section>
 
@@ -63,7 +86,9 @@
           <button id="removeSectionBtn">Remove Section</button>
         </div>
       </div>
+
       <div id="sectionTabs" class="tabs"></div>
+
       <div class="section-tools">
         <button id="renameSectionBtn">Rename Section</button>
         <button id="addRowBtn">Add Row</button>
@@ -72,9 +97,11 @@
         <button id="removeColumnBtn">Remove Column</button>
         <button id="editColumnsBtn">Edit Column Names</button>
       </div>
+
       <div id="sectionEditor" class="table-wrap section-editor"></div>
     </section>
   </main>
-<script src="/static/app.js?v=6dot-20260608"></script>
+
+  <script src="/static/app.js?v=product-spec-no-results-v1"></script> 
 </body>
 </html>

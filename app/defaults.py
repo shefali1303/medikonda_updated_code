@@ -292,7 +292,7 @@ STANDARD_REQUIRED_FIELDS = [
 OIL_FIELDS = [
     ["Product Name", "Castor Oil"],
     ["Botanical Name", "Ricinus Communis"],
-    ["CAS Number", ""],
+    # ["CAS Number", ""],
     ["Shelf Life", "36 months"],
     ["Country of Origin", "India"],
     ["Manufacture Date", ""],
