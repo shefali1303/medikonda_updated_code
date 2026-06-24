@@ -544,7 +544,7 @@ $("saveBtn").onclick = async () => {
 
 $("generateBtn").onclick = async () => {
   try {
-    status("Generating PDF...");
+    status("Generating PDF and uploading to Google Drive...");
 
     const res = await api("/api/generate", {
       method: "POST",
@@ -554,8 +554,33 @@ $("generateBtn").onclick = async () => {
       body: JSON.stringify(collectState()),
     });
 
-    status(`PDF generated: <a href="${res.download_url}">Download ${res.file_name}</a> | <a href="${res.open_url}" target="_blank">Open preview</a>`);
+    let message = "";
 
+    if (res.drive_url) {
+      message = `
+        <strong>Your PDF has been uploaded on the Drive - COA & SPECS PDF GENERATOR.</strong><br>
+        PDF generated:
+        <a href="${res.download_url}">Download ${res.file_name}</a>
+        |
+        <a href="${res.open_url}" target="_blank">Open preview</a>
+        |
+        <a href="${res.drive_url}" target="_blank">Open in Google Drive</a>
+      `;
+    } else {
+      message = `
+        <strong>PDF generated successfully, but Google Drive upload was not completed.</strong><br>
+        PDF generated:
+        <a href="${res.download_url}">Download ${res.file_name}</a>
+        |
+        <a href="${res.open_url}" target="_blank">Open preview</a>
+      `;
+
+      if (res.drive_error) {
+        message += `<br><span style="color:#b42318;">Drive upload error: ${res.drive_error}</span>`;
+      }
+    }
+
+    status(message);
     window.open(res.open_url, "_blank");
   } catch (e) {
     status("PDF error: " + e.message);
