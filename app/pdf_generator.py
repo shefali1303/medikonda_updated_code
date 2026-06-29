@@ -55,6 +55,13 @@ def _field_value(data: Dict[str, Any], *names: str) -> str:
             return value
     return ""
 
+def _safe_file_part(value: Any, fallback: str = "PRODUCT") -> str:
+    text = _safe_text(value).strip() or fallback
+    text = text.replace("/", "-").replace("\\", "-")
+    text = "".join(ch if ch.isalnum() or ch in ("-", "_") else "_" for ch in text)
+    text = text.strip("_-")
+    return text or fallback
+
 
 def _paragraph(text: Any, style: ParagraphStyle) -> Paragraph:
     return Paragraph(_safe_text(text).replace("\n", "<br/>"), style)
@@ -311,10 +318,10 @@ def _standard_section_table(section: Dict[str, Any], total_w: float, normal: Par
 
 
 def _generate_standard_coa_pdf(data: Dict[str, Any], output_path: str | Path | None = None) -> Path:
-    sku = _field_value(data, "Product SKU#", "Product SKU", "SKU") or "PRODUCT"
-    batch = _field_value(data, "Batch #", "Batch Number") or ""
+    sku = _safe_file_part(_field_value(data, "Product SKU#", "Product SKU", "SKU"), "PRODUCT")
+
     if output_path is None:
-        output_path = OUTPUT_DIR / f"CERTIFICATE_OF_ANALYSIS_{sku}_{batch}.pdf".replace("__", "_")
+        output_path = OUTPUT_DIR / f"{sku}-COA.pdf"
     else:
         output_path = Path(output_path)
     output_path.parent.mkdir(parents=True, exist_ok=True)
@@ -407,9 +414,10 @@ def _compact_section_table(section: Dict[str, Any], total_w: float, normal: Para
 
 
 def _generate_probiotics_spec_pdf(data: Dict[str, Any], output_path: str | Path | None = None) -> Path:
-    sku = _field_value(data, "Product SKU#", "Product SKU", "SKU") or "PRODUCT"
+    sku = _safe_file_part(_field_value(data, "Product SKU#", "Product SKU", "SKU"), "PRODUCT")
+
     if output_path is None:
-        output_path = OUTPUT_DIR / f"PRODUCT_SPECIFICATION_{sku}.pdf"
+        output_path = OUTPUT_DIR / f"{sku}-Specs.pdf"
     else:
         output_path = Path(output_path)
     output_path.parent.mkdir(parents=True, exist_ok=True)
@@ -563,9 +571,10 @@ def _default_storage_guidelines_table(total_w: float, normal: ParagraphStyle, bo
 
 
 def _generate_standard_spec_pdf(data: Dict[str, Any], output_path: str | Path | None = None) -> Path:
-    sku = _field_value(data, "Product SKU#", "Product SKU", "SKU") or "PRODUCT"
+    sku = _safe_file_part(_field_value(data, "Product SKU#", "Product SKU", "SKU"), "PRODUCT")
+
     if output_path is None:
-        output_path = OUTPUT_DIR / f"PRODUCT_SPECIFICATION_{sku}.pdf"
+        output_path = OUTPUT_DIR / f"{sku}-Specs.pdf"
     else:
         output_path = Path(output_path)
     output_path.parent.mkdir(parents=True, exist_ok=True)
@@ -676,9 +685,10 @@ def _compact_section_table(section: Dict[str, Any], total_w: float, normal: Para
 
 
 def _generate_probiotics_spec_pdf(data: Dict[str, Any], output_path: str | Path | None = None) -> Path:
-    sku = _field_value(data, "Product SKU#", "Product SKU", "SKU") or "PRODUCT"
+    sku = _safe_file_part(_field_value(data, "Product SKU#", "Product SKU", "SKU"), "PRODUCT")
+
     if output_path is None:
-        output_path = OUTPUT_DIR / f"PROBIOTICS_PRODUCT_SPECIFICATION_{sku}.pdf"
+        output_path = OUTPUT_DIR / f"{sku}-Specs.pdf"
     else:
         output_path = Path(output_path)
     output_path.parent.mkdir(parents=True, exist_ok=True)
@@ -811,9 +821,10 @@ def _default_storage_guidelines_table(total_w: float, normal: ParagraphStyle, bo
 
 
 def _generate_standard_spec_pdf(data: Dict[str, Any], output_path: str | Path | None = None) -> Path:
-    sku = _field_value(data, "Product SKU#", "Product SKU", "SKU") or "PRODUCT"
+    sku = _safe_file_part(_field_value(data, "Product SKU#", "Product SKU", "SKU"), "PRODUCT")
+
     if output_path is None:
-        output_path = OUTPUT_DIR / f"PRODUCT_SPECIFICATION_{sku}.pdf"
+        output_path = OUTPUT_DIR / f"{sku}-Specs.pdf"
     else:
         output_path = Path(output_path)
     output_path.parent.mkdir(parents=True, exist_ok=True)
@@ -957,9 +968,10 @@ def _default_storage_guidelines_table(total_w: float, normal: ParagraphStyle, bo
 
 
 def _generate_standard_spec_pdf(data: Dict[str, Any], output_path: str | Path | None = None) -> Path:
-    sku = _field_value(data, "Product SKU#", "Product SKU", "SKU") or "PRODUCT"
+    sku = _safe_file_part(_field_value(data, "Product SKU#", "Product SKU", "SKU"), "PRODUCT")
+
     if output_path is None:
-        output_path = OUTPUT_DIR / f"PRODUCT_SPECIFICATION_{sku}.pdf"
+        output_path = OUTPUT_DIR / f"{sku}-Specs.pdf"
     else:
         output_path = Path(output_path)
     output_path.parent.mkdir(parents=True, exist_ok=True)

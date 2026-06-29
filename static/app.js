@@ -116,13 +116,13 @@ function renderSetup() {
     ? "PRODUCT SPECIFICATION SHEET"
     : "CERTIFICATE OF ANALYSIS";
 
-  $("website").value = state.website || "www.medikonda.com";
+  // $("website").value = state.website || "www.medikonda.com";
   $("templatePreset").value = state.template_name || Object.keys(presets)[0] || "";
 }
 
 function readSetup() {
   state.document_title = $("documentTitle").value || "CERTIFICATE OF ANALYSIS";
-  state.website = $("website").value.trim() || "www.medikonda.com";
+  state.website = "www.medikonda.com";
   state.border_color = "#6dbb43";
   state.logo_width_mm = "66";
   state.logo_height_mm = "24";
@@ -463,7 +463,6 @@ async function init() {
   renderRecords();
   renderAll();
 
-  status("Ready. Select a preset, edit fields/sections, then generate PDF. Use the ⋮⋮ handles to move fields, rows, and columns.");
 }
 
 $("templatePreset").onchange = () => {
